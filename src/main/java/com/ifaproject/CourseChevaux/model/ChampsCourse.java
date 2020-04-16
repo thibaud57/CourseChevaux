@@ -1,15 +1,16 @@
 package com.ifaproject.CourseChevaux.model;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "champs_course")
+@EntityListeners(AuditingEntityListener.class)
 public class ChampsCourse {
     //fields
     @Id
-    @Column(name = "nom_champ_course")
     private String nomChampCourse;
 
     //mappings
