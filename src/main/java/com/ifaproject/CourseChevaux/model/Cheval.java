@@ -9,22 +9,17 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "cheval")
 @EntityListeners(AuditingEntityListener.class)
 public class Cheval{
     //fields
     @Id
-    @Column(name = "nom_cheval")
     private String nomCheval;
 
-    @Column(name = "date_nais")
     @Temporal(TemporalType.DATE)
     private Date dateNais;
 
-    @Column(name = "gains")
     private int gains;
 
-    @Column(name = "sexe")
     private String sexe;
 
     //mappings

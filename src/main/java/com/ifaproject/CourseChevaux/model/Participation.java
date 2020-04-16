@@ -1,17 +1,17 @@
 package com.ifaproject.CourseChevaux.model;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "participation")
+@EntityListeners(AuditingEntityListener.class)
 public class Participation {
     //fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int id;
 
-    @Column(name = "position")
     private int position;
 
     //mappings

@@ -1,18 +1,18 @@
 package com.ifaproject.CourseChevaux.model;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "jockey")
+@EntityListeners(AuditingEntityListener.class)
 public class Jockey {
     //fields
     @Id
-    @Column(name = "matricule")
     private int matricule;
 
-    @Column(name = "nom_jockey")
     private String nomJockey;
 
 

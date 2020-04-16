@@ -1,14 +1,15 @@
 package com.ifaproject.CourseChevaux.model;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "proprietaire")
+@EntityListeners(AuditingEntityListener.class)
 public class Proprietaire {
     //fields
     @Id
-    @Column(name = "nom_proprio")
     private String nomProprio;
 
     //mappings

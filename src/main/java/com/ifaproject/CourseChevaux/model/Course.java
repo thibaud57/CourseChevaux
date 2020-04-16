@@ -9,18 +9,14 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "course")
 @EntityListeners(AuditingEntityListener.class)
 public class Course {
     //fields
     @Id
-    @Column(name = "num")
     private int num;
 
-    @Column(name = "designation")
     private String designation;
 
-    @Column(name = "date_course")
     @Temporal(TemporalType.DATE)
     private Date dateCourse;
 
