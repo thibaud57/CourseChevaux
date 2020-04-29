@@ -1,6 +1,6 @@
-package com.ifaproject.CourseChevaux.securite;
+package com.ifaproject.CourseChevaux.config;
 
-import com.ifaproject.CourseChevaux.model.Utilisateur;
+import com.ifaproject.CourseChevaux.entity.Utilisateur;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

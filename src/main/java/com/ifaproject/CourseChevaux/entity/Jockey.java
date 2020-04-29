@@ -1,5 +1,6 @@
-package com.ifaproject.CourseChevaux.model;
+package com.ifaproject.CourseChevaux.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -18,6 +19,7 @@ public class Jockey {
 
     //mappings
     @OneToMany(mappedBy = "jockey", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JsonIgnore
     private List<Participation> participations;
 
     //constructeurs
@@ -66,7 +68,7 @@ public class Jockey {
 
     //méthodes partiques
     public void addParticipation(Participation participation){
-        if(participation == null){
+        if(participations == null){
             participations = new ArrayList<>();
         }
         participations.add(participation);

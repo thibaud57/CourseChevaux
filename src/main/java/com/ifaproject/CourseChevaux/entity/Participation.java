@@ -1,4 +1,4 @@
-package com.ifaproject.CourseChevaux.model;
+package com.ifaproject.CourseChevaux.entity;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -12,6 +12,9 @@ public class Participation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(unique = true)
+    private int dossard;
+
     private int position;
 
     //mappings
@@ -23,19 +26,20 @@ public class Participation {
     @JoinColumn(name = "matricule")
     private Jockey jockey;
 
-
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "num")
     private Course course;
-    //constructeurs
 
+    //constructeurs
     public Participation() {
     }
 
-    public Participation(int position) {
+    public Participation(int dossard, int position) {
+        this.dossard = dossard;
         this.position = position;
     }
-//getters / setters
+
+    //getters / setters
 
     public int getId() {
         return id;
@@ -75,6 +79,14 @@ public class Participation {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public int getDossard() {
+        return dossard;
+    }
+
+    public void setDossard(int dossard) {
+        this.dossard = dossard;
     }
 
     //tostring

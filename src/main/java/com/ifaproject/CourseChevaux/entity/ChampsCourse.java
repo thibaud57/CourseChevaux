@@ -1,5 +1,6 @@
-package com.ifaproject.CourseChevaux.model;
+package com.ifaproject.CourseChevaux.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ public class ChampsCourse {
 
     //mappings
     @OneToMany(mappedBy = "champsCourse", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JsonIgnore
     private List<Course> courses;
 
 
@@ -58,11 +60,12 @@ public class ChampsCourse {
 
     //ajouter une course
     public void addCourse(Course course){
-        if(course == null){
+        if(courses == null){
             courses = new ArrayList<>();
         }
         courses.add(course);
         //etablir lien bidirectionnel
         course.setChampsCourse(this);
     }
+
 }

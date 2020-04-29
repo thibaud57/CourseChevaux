@@ -1,7 +1,7 @@
-package com.ifaproject.CourseChevaux.securite;
+package com.ifaproject.CourseChevaux.config;
 
 import com.ifaproject.CourseChevaux.dao.UtilisateurDao;
-import com.ifaproject.CourseChevaux.model.Utilisateur;
+import com.ifaproject.CourseChevaux.entity.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
