@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+
+<body>
+
+
+
+<script>
+
+    const myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0Z2Vpc2xlciIsImFkbWluIjp0cnVlLCJleHAiOjE1ODcxNjE1MzQsImlhdCI6MTU4NzEyNTUzNH0.wOUU99IrN7Byclt2VUn5SRCA35TzjfOOqlbNluw7jIs');
+
+    var myInit = {
+        method: 'GET',
+        headers: myHeaders,
+        mode: 'no-cors',
+        cache: 'default'
+    };
+
+    var myRequest = new Request('http://localhost:8080/utilisateurs', myInit);
+
+    fetch(myRequest, myInit).then(function (response) {
+        return response.json();
+    }).then(liste => {
+
+        //On récupère la balise table dans le DOM
+        const table = document.querySelector("#id-de-ma-table");
+
+    //pour chaque utilisateur dans le JSON
+    liste.forEach(utilisateur => {
+        const tr = document.createElement("tr"); //on créait une nouvelle ligne
+
+    //on créait une nouvelle case avec le prénom de l'utilisateur
+    const tdPseudo = document.createElement("td");
+    tdPseudo.appendChild(document.createTextNode(utilisateur.pseudo));
+
+    //on créait une nouvelle case avec le nom de l'utilisateur
+    const tdPassword = document.createElement("td")
+    tdPassword.appendChild(document.createTextNode(utilisateur.password));
+
+    //On ajoute les 2 cases à la ligne
+    tr.appendChild(tdPseudo);
+    tr.appendChild(tdPassword);
+
+    //On ajoute la ligne à la table
+    table.appendChild(tr);
+    })
+    });
+
+</script>
+<table id="id-de-ma-table">
+    <tr>
+        <th>Pseudo</th>
+        <th>Password</th>
+    </tr>
+</table>
+
+</body>
+
+</html>

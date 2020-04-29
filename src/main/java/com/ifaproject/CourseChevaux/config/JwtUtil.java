@@ -1,4 +1,4 @@
-package com.ifaproject.CourseChevaux.securite;
+package com.ifaproject.CourseChevaux.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class JwtUtil {
@@ -55,9 +54,9 @@ public class JwtUtil {
     }
     //Retourne vrai si le nom de l'utilisateur tentant de se connecter correspond
 //au subject du corp du token et si la date d'expiration n'est pas passée.
-    public Boolean validateToken(String token, UserDetail userDetail) {
+    public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractionDuCorpDuToken(token).getSubject();
-        return (username.equals(userDetail.getUsername()) && !tokenNonDepasseDateExpiration(token));
+        return (username.equals(userDetails.getUsername()) && !tokenNonDepasseDateExpiration(token));
     }
 
 

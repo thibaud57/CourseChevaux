@@ -1,8 +1,10 @@
-package com.ifaproject.CourseChevaux.model;
+package com.ifaproject.CourseChevaux.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,36 +19,44 @@ public class Course {
 
     private String designation;
 
-    @Temporal(TemporalType.DATE)
-    private Date dateCourse;
+    private LocalDate dateCourse;
+
+    private String saison;
+
+    private int dotation;
 
     //mappings
     @OneToMany(mappedBy = "course", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JsonIgnore
     private List<Participation> participations;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "nom_champ_course")
     private ChampsCourse champsCourse;
 
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "type_course")
-    private Type type;
 
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "nom_categorie")
-    private Categorie categorie;
+    @Enumerated(EnumType.STRING)
+    private TypeEnum typeEnum;
+
+    @Enumerated(EnumType.STRING)
+    private TypeCategorie typeCategorie;
 
     //constructeurs
 
     public Course() {
     }
 
-    public Course(int num, String designation, Date dateCourse) {
+    public Course(int num, String designation, LocalDate dateCourse, String saison, int dotation, TypeEnum typeEnum, TypeCategorie typeCategorie) {
         this.num = num;
         this.designation = designation;
         this.dateCourse = dateCourse;
+        this.saison = saison;
+        this.dotation = dotation;
+        this.typeEnum = typeEnum;
+        this.typeCategorie = typeCategorie;
     }
-//getters / setters
+
+    //getters / setters
 
     public int getNum() {
         return num;
@@ -64,11 +74,11 @@ public class Course {
         this.designation = designation;
     }
 
-    public Date getDateCourse() {
+    public LocalDate getDateCourse() {
         return dateCourse;
     }
 
-    public void setDateCourse(Date dateCourse) {
+    public void setDateCourse(LocalDate dateCourse) {
         this.dateCourse = dateCourse;
     }
 
@@ -88,22 +98,39 @@ public class Course {
         this.champsCourse = champsCourse;
     }
 
-    public Type getType() {
-        return type;
+    public TypeEnum getTypeEnum() {
+        return typeEnum;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setTypeEnum(TypeEnum typeEnum) {
+        this.typeEnum = typeEnum;
     }
 
-    public Categorie getCategorie() {
-        return categorie;
+    public TypeCategorie getTypeCategorie() {
+        return typeCategorie;
     }
 
-    public void setCategorie(Categorie categorie) {
-        this.categorie = categorie;
+    public void setTypeCategorie(TypeCategorie typeCategorie) {
+        this.typeCategorie = typeCategorie;
     }
-//tostring
+
+    public String getSaison() {
+        return saison;
+    }
+
+    public void setSaison(String saison) {
+        this.saison = saison;
+    }
+
+    public int getDotation() {
+        return dotation;
+    }
+
+    public void setDotation(int dotation) {
+        this.dotation = dotation;
+    }
+
+    //tostring
 
     @Override
     public String toString() {
@@ -114,13 +141,15 @@ public class Course {
                 '}';
     }
 
-    //méthodes partiques
+    //méthodes pratiques
     public void addParticipation(Participation participation){
-        if(participation == null){
+        if(participations == null){
             participations = new ArrayList<>();
         }
         participations.add(participation);
         //etablir lien bidirectionnel
         participation.setCourse(this);
     }
+
+
 }

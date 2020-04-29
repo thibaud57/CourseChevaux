@@ -1,8 +1,10 @@
-package com.ifaproject.CourseChevaux.model;
+package com.ifaproject.CourseChevaux.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,7 +16,9 @@ public class Proprietaire {
 
     //mappings
     @ManyToMany(mappedBy = "proprietaires", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JsonIgnore
     private List<Cheval> chevaux;
+
 
     //constructeurs
 
@@ -51,6 +55,5 @@ public class Proprietaire {
                 "nomProprio='" + nomProprio + '\'' +
                 '}';
     }
-
 
 }

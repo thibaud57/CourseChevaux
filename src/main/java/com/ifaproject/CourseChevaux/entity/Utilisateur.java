@@ -1,4 +1,4 @@
-package com.ifaproject.CourseChevaux.model;
+package com.ifaproject.CourseChevaux.entity;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 

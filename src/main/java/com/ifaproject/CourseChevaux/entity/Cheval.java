@@ -1,9 +1,11 @@
-package com.ifaproject.CourseChevaux.model;
+package com.ifaproject.CourseChevaux.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,8 +17,7 @@ public class Cheval{
     @Id
     private String nomCheval;
 
-    @Temporal(TemporalType.DATE)
-    private Date dateNais;
+    private LocalDate dateNais;
 
     private int gains;
 
@@ -24,6 +25,7 @@ public class Cheval{
 
     //mappings
     @OneToMany(mappedBy = "cheval", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JsonIgnore
     private List<Participation> participations;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
@@ -32,8 +34,10 @@ public class Cheval{
             joinColumns = @JoinColumn(name = "nom_cheval"),
             inverseJoinColumns = @JoinColumn(name = "nom_proprio")
     )
+    @JsonIgnore
     private List<Proprietaire> proprietaires;
 
+    /*
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
             name = "parent",
@@ -44,13 +48,15 @@ public class Cheval{
 
     @ManyToMany(mappedBy = "chevalParent", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Cheval> chevalEnfant;
+*/
+
 
     //constructeurs
 
     public Cheval() {
     }
 
-    public Cheval(String nomCheval, Date dateNais, int gains, String sexe) {
+    public Cheval(String nomCheval, LocalDate dateNais, int gains, String sexe) {
         this.nomCheval = nomCheval;
         this.dateNais = dateNais;
         this.gains = gains;
@@ -75,11 +81,11 @@ public class Cheval{
         this.proprietaires = proprietaires;
     }
 
-    public Date getDateNais() {
+    public LocalDate getDateNais() {
         return dateNais;
     }
 
-    public void setDateNais(Date dateNais) {
+    public void setDateNais(LocalDate dateNais) {
         this.dateNais = dateNais;
     }
 
@@ -106,7 +112,7 @@ public class Cheval{
     public void setParticipations(List<Participation> participations) {
         this.participations = participations;
     }
-
+/*
     public List<Cheval> getChevalParent() {
         return chevalParent;
     }
@@ -122,7 +128,7 @@ public class Cheval{
     public void setChevalEnfant(List<Cheval> chevalEnfant) {
         this.chevalEnfant = chevalEnfant;
     }
-
+*/
 //tostring
 
 
@@ -138,7 +144,7 @@ public class Cheval{
 
     //méthodes partiques
     public void addParticipation(Participation participation){
-       if(participation == null){
+       if(participations == null){
            participations = new ArrayList<>();
        }
        participations.add(participation);
@@ -146,5 +152,11 @@ public class Cheval{
        participation.setCheval(this);
     }
 
+    public void addProprietaire(Proprietaire proprietaire){
+        if(proprietaires == null){
+            proprietaires = new ArrayList<>();
+        }
+        proprietaires.add(proprietaire);
+    }
 
 }

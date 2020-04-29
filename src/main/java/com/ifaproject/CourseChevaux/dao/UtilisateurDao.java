@@ -1,6 +1,6 @@
 package com.ifaproject.CourseChevaux.dao;
 
-import com.ifaproject.CourseChevaux.model.Utilisateur;
+import com.ifaproject.CourseChevaux.entity.Utilisateur;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
