@@ -1,3 +1,4 @@
+
 package com.ifaproject.CourseChevaux;
 
 import com.ifaproject.CourseChevaux.dao.*;
@@ -10,16 +11,16 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 
 @Component
-public class Fixture implements ApplicationRunner {
+public class Fixture /*implements ApplicationRunner*/ {
 
     //Liste des champs
-   private ChevalDao chevalDao;
-   private ProprietaireDao proprietaireDao;
-   private CourseDao courseDao;
-   private JockeyDao jockeyDao;
-   private ChampsCourseDao champsCourseDao;
+    private ChevalDao chevalDao;
+    private ProprietaireDao proprietaireDao;
+    private CourseDao courseDao;
+    private JockeyDao jockeyDao;
+    private ChampsCourseDao champsCourseDao;
 
-   //Constructeur
+    //Constructeur
     @Autowired
     public Fixture(ChevalDao chevalDao, ProprietaireDao proprietaireDao, CourseDao courseDao, JockeyDao jockeyDao, ChampsCourseDao champsCourseDao) {
         this.chevalDao = chevalDao;
@@ -28,8 +29,8 @@ public class Fixture implements ApplicationRunner {
         this.jockeyDao = jockeyDao;
         this.champsCourseDao = champsCourseDao;
     }
-
-//Application test
+/*
+    //Application test
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
@@ -72,4 +73,6 @@ public class Fixture implements ApplicationRunner {
         champsCourseDao.save(champsCourse);
 
     }
+
+ */
 }
