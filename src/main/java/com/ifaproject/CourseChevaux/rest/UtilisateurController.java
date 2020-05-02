@@ -1,4 +1,4 @@
-package com.ifaproject.CourseChevaux.controller;
+package com.ifaproject.CourseChevaux.rest;
 
 import com.ifaproject.CourseChevaux.dao.UtilisateurDao;
 import com.ifaproject.CourseChevaux.entity.Utilisateur;
