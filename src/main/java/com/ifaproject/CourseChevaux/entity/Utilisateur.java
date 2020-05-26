@@ -20,6 +20,8 @@ public class Utilisateur {
 
     private boolean admin;
 
+    private String nomImageAvatar;
+
 
     //constructeurs
     public Utilisateur() {
@@ -74,6 +76,14 @@ public class Utilisateur {
         this.email = email;
     }
 
+    public String getNomImageAvatar() {
+        return nomImageAvatar;
+    }
+
+    public void setNomImageAvatar(String nomImageAvatar) {
+        this.nomImageAvatar = nomImageAvatar;
+    }
+
     //tostring
 
     @Override
@@ -86,4 +96,6 @@ public class Utilisateur {
                 ", admin=" + admin +
                 '}';
     }
+
+
 }

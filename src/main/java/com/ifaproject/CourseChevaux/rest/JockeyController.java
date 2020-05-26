@@ -19,7 +19,7 @@ public class JockeyController {
     JockeyDao jockeyDao;
 
     //mapping Get / jockeys
-    @GetMapping("/jockey")
+    @GetMapping("/jockeys")
     public List<Jockey> getJockeys(){
         return jockeyDao.findAll();
     }

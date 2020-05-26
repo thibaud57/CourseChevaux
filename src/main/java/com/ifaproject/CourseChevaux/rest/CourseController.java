@@ -19,7 +19,7 @@ public class CourseController {
     CourseDao courseDao;
 
     //mapping Get / courses
-    @GetMapping("/course")
+    @GetMapping("/courses")
     public List<Course> getCourses(){
         return courseDao.findAll();
     }

@@ -19,7 +19,7 @@ public class ChampsCourseController {
     ChampsCourseDao champsCourseDao;
 
     //mapping Get / champsCourses
-    @GetMapping("/champsCourse")
+    @GetMapping("/champsCourses")
     public List<ChampsCourse> getChampsCourse(){
         return champsCourseDao.findAll();
     }
