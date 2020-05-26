@@ -19,7 +19,7 @@ public class ProprietaireController {
     ProprietaireDao proprietaireDao;
 
     //mapping Get / proprietaires
-    @GetMapping("/proprietaire")
+    @GetMapping("/proprietaires")
     public List<Proprietaire> getProprietaire(){
         return proprietaireDao.findAll();
     }

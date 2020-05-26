@@ -19,7 +19,7 @@ public class ChevalController {
     ChevalDao chevalDao;
 
     //mapping Get / chevaux
-    @GetMapping("/cheval")
+    @GetMapping("/chevaux")
     public List<Cheval> getChevaux(){
         return chevalDao.findAll();
     }
