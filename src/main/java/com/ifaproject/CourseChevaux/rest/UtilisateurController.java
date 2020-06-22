@@ -60,7 +60,7 @@ public class UtilisateurController {
         return ResponseEntity.ok(jwtUtil.generateToken(userDetail));
     }
 
-    @GetMapping("/utilisateurs")
+    @GetMapping("/")
     public List<Utilisateur> getListeUtilisateur() {
         return utilisateurDao.findAll();
     }
